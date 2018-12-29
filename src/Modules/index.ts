@@ -34,7 +34,7 @@ export default class Command
     public async execute()
     {
         const command = this.generateCommand();
-        const result = await execute(command);
+        const result: Result = await execute(command);
         return result;
     };
     private generateCommand()

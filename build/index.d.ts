@@ -13,9 +13,6 @@ export default class Command {
     constructor(command: string);
     set(name: string, value?: string): void;
     delete(name: string): void;
-    execute(): Promise<{
-        stdout: string;
-        stderr: string;
-    }>;
+    execute(): Promise<Result>;
     private generateCommand;
 }
