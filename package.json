@@ -20,5 +20,5 @@
 	{
 		"build": "./node_modules/.bin/webpack"
 	},
-	"types": "./build/index.d.ts"
+	"types": "./types/index.d.ts"
 }

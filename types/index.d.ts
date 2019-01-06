@@ -13,6 +13,10 @@ export default class Command {
     constructor(command: string);
     set(name: string, value?: string): void;
     delete(name: string): void;
+    /** Compiles command into string. */
+    compile(): string;
+    /** Compiles and executes command as a child process. */
     execute(): Promise<Result>;
-    private generateCommand;
+    /** Compiles and spawns command as a child process. */
+    spawn(): import("child_process").ChildProcess;
 }
