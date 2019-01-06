@@ -2,7 +2,7 @@
 
 // External Modules
 import { promisify } from 'util';
-import { exec as executeCallback } from 'child_process';
+import { exec as executeCallback, spawn } from 'child_process';
 const execute = promisify(executeCallback);
 
 // Types
@@ -31,16 +31,25 @@ export default class Command
     {
         this.map.delete(name);
     };
-    public async execute()
-    {
-        const command = this.generateCommand();
-        const result: Result = await execute(command);
-        return result;
-    };
-    private generateCommand()
+    /** Compiles command into string. */
+    public compile()
     {
         let command = this.command;
         for (let item of this.map) command += ' ' + item[0] + ' ' + item[1];
         return command;
+    };
+    /** Compiles and executes command as a child process. */
+    public async execute()
+    {
+        const command = this.compile();
+        const result: Result = await execute(command);
+        return result;
+    };
+    /** Compiles and spawns command as a child process. */
+    public spawn()
+    {
+        const command = this.compile();
+        const process = spawn(command);
+        return process;
     };
 };
