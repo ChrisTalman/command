@@ -6,7 +6,7 @@ import { exec as executeCallback, spawn } from 'child_process';
 const execute = promisify(executeCallback);
 
 // Types
-import { ExecException } from 'child_process';
+import { ExecException, SpawnOptions } from 'child_process';
 export interface Result
 {
     stderr: string;
@@ -46,10 +46,10 @@ export default class Command
         return result;
     };
     /** Compiles and spawns command as a child process. */
-    public spawn()
+    public spawn(options: SpawnOptions = {})
     {
         const command = this.compile();
-        const process = spawn(command);
+        const process = spawn(command, options);
         return process;
     };
 };

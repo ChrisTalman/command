@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { ExecException } from 'child_process';
+import { ExecException, SpawnOptions } from 'child_process';
 export interface Result {
     stderr: string;
     stdout: string;
@@ -18,5 +18,5 @@ export default class Command {
     /** Compiles and executes command as a child process. */
     execute(): Promise<Result>;
     /** Compiles and spawns command as a child process. */
-    spawn(): import("child_process").ChildProcess;
+    spawn(options?: SpawnOptions): import("child_process").ChildProcess;
 }
