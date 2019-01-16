@@ -9,7 +9,7 @@ export interface ExecuteError extends ExecException, Result {
 /** Builder to construct commands for a command line. */
 export default class Command {
     readonly command: string;
-    private map;
+    private readonly map;
     constructor(command: string);
     set(name: string, value?: string): void;
     delete(name: string): void;

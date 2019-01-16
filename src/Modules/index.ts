@@ -18,10 +18,11 @@ export interface ExecuteError extends ExecException, Result {};
 export default class Command
 {
     public readonly command: string;
-    private map: Map<string, string>;
+    private readonly map: Map<string, string>;
     constructor(command: string)
     {
         this.command = command;
+        this.map = new Map();
     };
     public set(name: string, value = '')
     {
