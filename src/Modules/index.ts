@@ -22,14 +22,10 @@ export default class Command
     constructor(command: string)
     {
         this.command = command;
-        console.log('Map...');
         this.map = new Map();
-        console.log('this:', this);
-        console.log('Map.');
     };
     public set(name: string, value = '')
     {
-        console.log('this:', this);
         this.map.set(name, value);
     };
     public delete(name: string)
