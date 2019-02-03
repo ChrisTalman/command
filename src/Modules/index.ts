@@ -13,30 +13,39 @@ export interface Result
     stdout: string;
 };
 export interface ExecuteError extends ExecException, Result {};
+interface Item
+{
+    name: string;
+    value?: string;
+};
 
 /** Builder to construct commands for a command line. */
 export default class Command
 {
     public readonly command: string;
-    private readonly map: Map<string, string>;
+    /** Option items following the root command. */
+    private readonly items: Array<Item>;
     constructor(command: string)
     {
         this.command = command;
-        this.map = new Map();
+        this.items = [];
     };
-    public set(name: string, value = '')
+    /** Adds an option to the command. */
+    public add(name: string, value?: string)
     {
-        this.map.set(name, value);
-    };
-    public delete(name: string)
-    {
-        this.map.delete(name);
+        const item: Item = { name };
+        if (typeof value === 'string') item.value = value;
+        this.items.push(item);
     };
     /** Compiles command into string. */
     public compile()
     {
         let command = this.command;
-        for (let item of this.map) command += ' ' + item[0] + ' ' + item[1];
+        for (let item of this.items)
+        {
+            command += ' ' + item.name;
+            if (typeof item.value === 'string') command += ' ' + item.value;
+        };
         return command;
     };
     /** Compiles and executes command as a child process. */
