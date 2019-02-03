@@ -58,7 +58,7 @@ export default class Command
     /** Compiles and spawns command as a child process. */
     public spawn(options: SpawnOptions = {})
     {
-        const items = this.items.map(item => item.name + ' ' + item.value);
+        const items = this.items.reduce((items, item) => { items.push(item.name, item.value); return items; }, [] as Array<string>);
         const process = spawn(this.command, items, options);
         return process;
     };
