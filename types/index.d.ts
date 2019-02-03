@@ -14,7 +14,7 @@ export default class Command {
     constructor(command: string);
     /** Adds an option to the command. */
     add(name: string, value?: string): void;
-    /** Compiles command into string. */
+    /** Compiles whole command into string. */
     compile(): string;
     /** Compiles and executes command as a child process. */
     execute(): Promise<Result>;

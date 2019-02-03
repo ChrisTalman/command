@@ -37,7 +37,7 @@ export default class Command
         if (typeof value === 'string') item.value = value;
         this.items.push(item);
     };
-    /** Compiles command into string. */
+    /** Compiles whole command into string. */
     public compile()
     {
         let command = this.command;
@@ -58,8 +58,8 @@ export default class Command
     /** Compiles and spawns command as a child process. */
     public spawn(options: SpawnOptions = {})
     {
-        const command = this.compile();
-        const process = spawn(command, options);
+        const items = this.items.map(item => item.name + ' ' + item.value);
+        const process = spawn(this.command, items, options);
         return process;
     };
 };
