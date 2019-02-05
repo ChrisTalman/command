@@ -12,7 +12,7 @@ export default class Command {
     /** Option items following the root command. */
     private readonly items;
     constructor(command: string);
-    /** Adds an option to the command. */
+    /** Adds an argument to the command. */
     add(name: string, value?: string): void;
     /** Compiles whole command into string. */
     compile(): string;
@@ -20,4 +20,6 @@ export default class Command {
     execute(): Promise<Result>;
     /** Compiles and spawns command as a child process. */
     spawn(options?: SpawnOptions): import("child_process").ChildProcess;
+    /** Compiles arguments of command into string. */
+    private compileArguments;
 }

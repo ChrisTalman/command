@@ -1,7 +1,7 @@
 {
 	"name": "@bluecewe/command",
 	"description": "Class to build and execute a CLI command.",
-	"version": "2.0.2",
+	"version": "2.0.3",
 	"repository": {
 		"type": "git",
 		"url": "https://bitbucket.org/Bluecewe/command.git"

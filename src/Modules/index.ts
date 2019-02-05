@@ -30,7 +30,7 @@ export default class Command
         this.command = command;
         this.items = [];
     };
-    /** Adds an option to the command. */
+    /** Adds an argument to the command. */
     public add(name: string, value?: string)
     {
         const item: Item = { name };
@@ -58,8 +58,19 @@ export default class Command
     /** Compiles and spawns command as a child process. */
     public spawn(options: SpawnOptions = {})
     {
-        const items = this.items.reduce((items, item) => { items.push(item.name, item.value); return items; }, [] as Array<string>);
-        const process = spawn(this.command, items, options);
+        const commandArguments = this.compileArguments();
+        const process = spawn(this.command, commandArguments, options);
         return process;
+    };
+    /** Compiles arguments of command into string. */
+    private compileArguments()
+    {
+        const items: Array<string> = [];
+        for (let item of this.items)
+        {
+            items.push(item.name);
+            if (typeof item.value === 'string') items.push(item.value);
+        };
+        return items;
     };
 };
