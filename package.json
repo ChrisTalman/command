@@ -1,7 +1,7 @@
 {
-	"name": "@ChrisTalman/command",
-	"description": "Class to build and execute a CLI command.",
-	"version": "2.0.3",
+	"name": "@chris-talman/command",
+	"description": "Class to build and execute a CLI command",
+	"version": "2.0.4",
 	"devDependencies": {
 		"@types/node": "10.12.18",
 		"ts-loader": "5.3.2",
@@ -10,8 +10,7 @@
 		"webpack-cli": "3.1.2",
 		"webpack-node-externals": "1.7.2"
 	},
-	"scripts":
-	{
+	"scripts": {
 		"build": "./node_modules/.bin/webpack"
 	},
 	"types": "./types/index.d.ts"
